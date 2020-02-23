@@ -4,11 +4,14 @@ import me.vert3xo.purgatorybungee.PurgatoryBungee;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class Events implements Listener {
+
+    private PurgatoryBungee plugin = PurgatoryBungee.getInstance();
 
     @EventHandler
     public void checkIfBannned(ServerConnectedEvent e) {
@@ -29,6 +32,14 @@ public class Events implements Listener {
                 }
             };
             plugin.getProxy().getServerInfo(purgatory).ping(callback);
+        }
+    }
+
+    @EventHandler
+    public void createPlayerList(PostLoginEvent e) {
+        if (!this.plugin.playerList.contains(e.getPlayer().getUniqueId().toString())) {
+            this.plugin.playerList.set(e.getPlayer().getDisplayName().toLowerCase() + ".uuid", e.getPlayer().getUniqueId().toString());
+            this.plugin.savePlayerList();
         }
     }
 

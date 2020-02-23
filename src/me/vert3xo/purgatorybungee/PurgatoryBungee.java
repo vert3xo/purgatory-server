@@ -2,6 +2,7 @@ package me.vert3xo.purgatorybungee;
 
 import me.vert3xo.purgatorybungee.commands.GlobalBan;
 import me.vert3xo.purgatorybungee.commands.GlobalKick;
+import me.vert3xo.purgatorybungee.commands.GlobalUnban;
 import me.vert3xo.purgatorybungee.commands.PingCommand;
 import me.vert3xo.purgatorybungee.configuration.Bans;
 import me.vert3xo.purgatorybungee.events.Events;
@@ -16,6 +17,7 @@ import java.io.*;
 public class PurgatoryBungee extends Plugin {
 
     private static PurgatoryBungee instance;
+    public Configuration playerList;
     public Configuration configuration;
     public Bans bans;
 
@@ -23,6 +25,7 @@ public class PurgatoryBungee extends Plugin {
     public void onEnable() {
         instance = this;
         this.configuration = this.createConfig();
+        this.playerList = this.playerList();
         this.registerEvents();
         this.registerCommands();
         bans = new Bans();
@@ -43,6 +46,7 @@ public class PurgatoryBungee extends Plugin {
         this.getProxy().getPluginManager().registerCommand(this, new PingCommand());
         this.getProxy().getPluginManager().registerCommand(this, new GlobalKick());
         this.getProxy().getPluginManager().registerCommand(this, new GlobalBan());
+        this.getProxy().getPluginManager().registerCommand(this, new GlobalUnban());
         this.getLogger().info("Commands registered!");
     }
 
@@ -71,6 +75,36 @@ public class PurgatoryBungee extends Plugin {
             } catch (IOException e) {
                 this.getLogger().info(ChatColor.RED + "An error has occurred while loading config.yml");
                 return null;
+            }
+        }
+
+        private Configuration playerList() {
+        File file = new File(this.getDataFolder(), "all-players.yml");
+        if (!this.getDataFolder().exists()) {
+            this.getDataFolder().mkdir();
+        }
+
+        if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    this.getLogger().info(ChatColor.RED + "An error has occurred while creating all-players.yml");
+                }
+            }
+            try {
+                Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
+                return configuration;
+            } catch (IOException e) {
+                this.getLogger().info(ChatColor.RED + "An error has occurred while loading all-players.yml");
+                return null;
+                }
+        }
+
+        public void savePlayerList() {
+            try {
+                ConfigurationProvider.getProvider(YamlConfiguration.class).save(this.playerList, new File(this.getDataFolder(), "all-players.yml"));
+            } catch (IOException e) {
+                this.getLogger().info(ChatColor.RED + "An error has occurred while saving all-player.yml");
             }
         }
 

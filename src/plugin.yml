@@ -14,6 +14,10 @@ commands:
     description: "Allows for the administrator to ban player across all servers"
     usage: "/ban <player> [<reason>]"
     permission: "purgatory.kick"
+  unban:
+    description: "Unbans a chosen player"
+    usage: "/unban <player>"
+    permission: "purgatory.unban"
 
 permissions:
   purgatory.kick:
@@ -22,3 +26,6 @@ permissions:
   purgatory.ban:
     default: op
     description: "Allows to use /ban command"
+  purgatory.unban:
+    default: op
+    description: "Allows to use /unban command"
