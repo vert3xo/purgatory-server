@@ -1,0 +1,14 @@
+name: "PurgatoryBungee"
+version: "0.1"
+main: "me.vert3xo.purgatorybungee.PurgatoryBungee"
+author: "Vert3xo"
+
+commands:
+  ping:
+    description: "Get players ping"
+  kick:
+    description: "Allows for the administrator to kick players from any server"
+    usage: "/kick <player> [<reason>]"
+  ban:
+    description: "Allows for the administrator to ban player across all servers"
+    usage: "/ban <player> [<reason>]"
