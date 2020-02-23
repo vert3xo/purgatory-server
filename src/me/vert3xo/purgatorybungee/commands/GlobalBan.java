@@ -11,7 +11,7 @@ import net.md_5.bungee.conf.Configuration;
 public class GlobalBan extends Command {
 
     public GlobalBan() {
-        super("ban");
+        super("ban", "purgatory.ban");
     }
 
     private PurgatoryBungee plugin = PurgatoryBungee.getInstance();

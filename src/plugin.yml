@@ -9,6 +9,16 @@ commands:
   kick:
     description: "Allows for the administrator to kick players from any server"
     usage: "/kick <player> [<reason>]"
+    permission: "purgatory.kick"
   ban:
     description: "Allows for the administrator to ban player across all servers"
     usage: "/ban <player> [<reason>]"
+    permission: "purgatory.kick"
+
+permissions:
+  purgatory.kick:
+    default: op
+    description: "Allows to use /kick command"
+  purgatory.ban:
+    default: op
+    description: "Allows to use /ban command"

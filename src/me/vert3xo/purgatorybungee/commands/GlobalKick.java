@@ -10,7 +10,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class GlobalKick extends Command {
 
     public GlobalKick() {
-        super("kick");
+        super("kick", "purgatory.kick");
     }
 
     @Override
