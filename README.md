@@ -6,5 +6,5 @@ In `config.yml` you can customize messages and name of special server for banned
 `bans.yml` file is for storing banned player's UUIDs, display names and reasons for bans. This file should **not** be edited.
 
 # WIP
-Permissions not yet implemented. Until I add them you won't be able to stop players from banning whoever they want!
+~~Permissions not yet implemented. Until I add them you won't be able to stop players from banning whoever they want!~~ Permissions are now working
 Unban system not yet implemented. If you want to unban a player you will have to manually remove their entry from `bans.yml` file.
